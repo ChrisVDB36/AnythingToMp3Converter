@@ -161,6 +161,7 @@
             startConvertingButton.Disable();
             deleteMediaFileButton.Disable();
             addMediaFilesButton.Disable();
+            mediaFilesListView.SelectedItem = null;
 
             string alertMessage = string.Empty;
             int totalFailed = 0;
