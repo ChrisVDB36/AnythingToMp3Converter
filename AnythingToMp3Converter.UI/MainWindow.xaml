@@ -1,12 +1,54 @@
 ﻿<Window x:Class="AnythingToMp3Converter.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AnythingToMp3Converter.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="350" Width="640"
+        MaxHeight="350" MaxWidth="640"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="Anything to MP3 Converter">
+    
     <Grid>
+        <StackPanel Margin="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0 4" Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                    <Label Content="Output folder:" FontFamily="Segoe UI Semibold" />
+                    <TextBox Name="txtOutputFolderPath" IsReadOnly="True" Width="300" />
+                    <Button Content="..." Width="20" Height="24" Margin="1 0" Click="BtnSetOutputFolderPath" />
+                </StackPanel>
+                <Button Name="btnAddFiles" Content="ADD FILES" Width="98" Height="24" HorizontalAlignment="Right" Click="BtnBrowseMediaFiles" Grid.Column="1" />
+            </Grid>
 
+            <ListView Name="lvMediaFiles" Height="239" BorderBrush="Black" BorderThickness="1" SelectionChanged="OnListViewSelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="File" Width="500" HeaderContainerStyle="{StaticResource GridViewColumnHeaderLeft}" />
+                        <GridViewColumn Header="Progress" Width="114" HeaderContainerStyle="{StaticResource GridViewColumnHeaderCenter}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Grid Margin="0 4 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
+                    <Button Name="btnDelete" Content="DEL" IsEnabled="False" Width="34" Height="24" Margin="0 0 1 0" HorizontalAlignment="Left" Click="BtnRemoveSelectedFile" />
+                    <Button Name="btnClear" Content="CLR" IsEnabled="False" Width="34" Height="24" Margin="1 0 0 0" HorizontalAlignment="Left" Click="BtnClearList" />
+                </StackPanel>
+                <Button Name="btnConvertFiles" Content="START CONVERTING" Width="140" Height="24" HorizontalAlignment="Right" Click="BtnConvertFilesAsync" Grid.Column="1" />
+            </Grid>
+        </StackPanel>
+
+        <!-- FFMPEG UPDATER -->
+        <ContentPresenter Name="cpUpdater" ContentTemplate="{StaticResource FFmpegUpdaterCheck}" Visibility="Collapsed" />
     </Grid>
 </Window>
