@@ -6,6 +6,7 @@
     {
         public string FilePath { get; set; }
         public string FileName { get; set; }
+        public string FileFullName { get; set; }
         public FileStatus FileStatus { get; set; }
         public int Progress { get; set; }
     }
