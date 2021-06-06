@@ -28,8 +28,8 @@
             <ListView Name="mediaFilesListView" Height="239" BorderThickness="1" BorderBrush="Black" SelectionChanged="OnListViewSelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="File" Width="487" HeaderContainerStyle="{StaticResource LeftGridViewColumnHeaderStyle}" />
-                        <GridViewColumn Header="Progress" Width="100" HeaderContainerStyle="{StaticResource CenterGridViewColumnHeaderStyle}" />
+                        <GridViewColumn Header="File" Width="480" HeaderContainerStyle="{StaticResource LeftGridViewColumnHeaderStyle}" />
+                        <GridViewColumn Header="Progress" Width="107" HeaderContainerStyle="{StaticResource CenterGridViewColumnHeaderStyle}" />
                     </GridView>
                 </ListView.View>
             </ListView>
