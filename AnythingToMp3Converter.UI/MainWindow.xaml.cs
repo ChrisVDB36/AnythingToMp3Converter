@@ -118,7 +118,7 @@
 
             // Dont continue if there are no media files found in listview
             List<MediaFile> fileList = mediaFilesListView.Items.OfType<MediaFile>().ToList();
-            if (fileList.Count > 0)
+            if (fileList.Count <= 0)
             {
                 MessageBox.Show("No files found to convert, converting aborted!", "No files found");
                 return;
