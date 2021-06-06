@@ -13,6 +13,14 @@
                 element.Visibility = Visibility.Visible;
             }
         }
+        public static void Hide(this FrameworkElement element)
+        {
+            if (element.IsNotNull())
+            {
+                element.Disable();
+                element.Visibility = Visibility.Hidden;
+            }
+        }
         public static void Collapse(this FrameworkElement element)
         {
             if (element.IsNotNull())
