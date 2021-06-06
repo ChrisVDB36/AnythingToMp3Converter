@@ -1,9 +1,14 @@
 ﻿<Application x:Class="AnythingToMp3Converter.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AnythingToMp3Converter.UI"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="ColorWhite" Color="White" />
+        <SolidColorBrush x:Key="ColorBlack" Color="Black" />
+        <SolidColorBrush x:Key="ColorBlue" Color="#0c5f9f" />
+        <SolidColorBrush x:Key="ColorBabyBlue" Color="#77a3c3" />
+        
+        
     </Application.Resources>
 </Application>
