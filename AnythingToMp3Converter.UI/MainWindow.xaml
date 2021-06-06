@@ -25,11 +25,11 @@
                 </StackPanel>
                 <Button Name="addMediaFilesButton" Content="ADD FILES" Width="98" Height="24" HorizontalAlignment="Right" Click="OnAddFilesButtonClick" Grid.Column="1" />
             </Grid>
-            <ListView Name="mediaFilesListView" Height="239" BorderBrush="Black" BorderThickness="1" SelectionChanged="OnListViewSelectionChanged">
+            <ListView Name="mediaFilesListView" Height="239" BorderThickness="1" BorderBrush="Black" SelectionChanged="OnListViewSelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="File" Width="501" HeaderContainerStyle="{StaticResource LeftGridViewColumnHeaderStyle}" />
-                        <GridViewColumn Header="Progress" Width="114" HeaderContainerStyle="{StaticResource CenterGridViewColumnHeaderStyle}" />
+                        <GridViewColumn Header="File" Width="487" HeaderContainerStyle="{StaticResource LeftGridViewColumnHeaderStyle}" />
+                        <GridViewColumn Header="Progress" Width="100" HeaderContainerStyle="{StaticResource CenterGridViewColumnHeaderStyle}" />
                     </GridView>
                 </ListView.View>
             </ListView>
