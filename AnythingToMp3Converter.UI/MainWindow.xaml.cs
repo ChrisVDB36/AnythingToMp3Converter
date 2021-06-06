@@ -88,8 +88,14 @@
                     }
                 }
 
+                clearCompletedButton.IsEnabled = mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileStatus.Equals(FileStatus.Completed));
                 clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
-                if (totalFailed > 0) MessageBox.Show($"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to add, it is possible that the file is either corrupt or too large. Please try again...", "Something went wrong!");
+
+                // Note failed files
+                if (totalFailed > 0)
+                {
+                    MessageBox.Show($"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to add, it is possible that the file is either corrupt or too large. Please try again...", "Something went wrong!");
+                }
             }
         }
 
@@ -99,6 +105,7 @@
             if (mediaFilesListView.SelectedItem is MediaFile mediaFile)
             {
                 mediaFilesListView.Items.Remove(mediaFile);
+                clearCompletedButton.IsEnabled = mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileStatus.Equals(FileStatus.Completed));
                 clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
             }
         }
@@ -107,8 +114,25 @@
         private void OnClearConverterButtonClick(object sender, RoutedEventArgs e)
         {
             if (mediaFilesListView.Items.Count > 0) mediaFilesListView.Items.Clear();
+            clearCompletedButton.Disable();
             clearConverterButton.Disable();
             deleteMediaFileButton.Disable();
+        }
+
+        // Button event handler: clear all converted media files from listview
+        private void OnClearCompletedButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (mediaFilesListView.Items.Count > 0)
+            {
+                foreach (var mediaFile in mediaFilesListView.Items.OfType<MediaFile>().Where(mf => mf.FileStatus.Equals(FileStatus.Completed)).ToList())
+                {
+                    mediaFilesListView.Items.Remove(mediaFile);
+                }
+            }
+
+            deleteMediaFileButton.Disable();
+            clearCompletedButton.Disable();
+            clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
         }
 
         // Button event handler: convert files
@@ -124,13 +148,14 @@
             }
 
             // Dont continue if there are no media files found in listview
-            List<MediaFile> fileList = mediaFilesListView.Items.OfType<MediaFile>().ToList();
-            if (fileList.Count <= 0)
+            List<MediaFile> mediaFiles = mediaFilesListView.Items.OfType<MediaFile>().ToList();
+            if (mediaFiles.Count <= 0)
             {
                 MessageBox.Show("No files found to convert, converting aborted!", "No files found");
                 return;
             }
 
+            clearCompletedButton.Disable();
             clearConverterButton.Disable();
             startConvertingButton.Disable();
             deleteMediaFileButton.Disable();
@@ -140,13 +165,13 @@
             int totalFailed = 0;
 
             // Convert each file from listview
-            foreach (var file in fileList)
+            foreach (var mediaFile in mediaFiles)
             {
                 try
                 {
                     FFmpeg.SetExecutablesPath(AppDomain.CurrentDomain.BaseDirectory, _ffmpegFileName, _ffprobeFileName);
-                    string outputFileName = string.Concat(Path.Combine(outputFolderPath, file.FileName), ".mp3");
-                    IMediaInfo mediaInfo = await FFmpeg.GetMediaInfo(file.FilePath);
+                    string outputFileName = string.Concat(Path.Combine(outputFolderPath, mediaFile.FileName), ".mp3");
+                    IMediaInfo mediaInfo = await FFmpeg.GetMediaInfo(mediaFile.FilePath);
                     IStream audioStream = mediaInfo.AudioStreams.FirstOrDefault()?.SetCodec(AudioCodec.mp3);
 
                     // Create new conversion object
@@ -160,26 +185,26 @@
                     // Set progress bar event handling
                     conversion.OnProgress += (s, args) =>
                     {
-                        file.Progress = args.Percent;
+                        mediaFile.Progress = args.Percent;
                         RefreshListView();
                     };
 
                     // Change file state
-                    file.FileStatus = FileStatus.Converting;
-                    file.Progress = 0;
+                    mediaFile.FileStatus = FileStatus.Converting;
+                    mediaFile.Progress = 0;
 
                     // Convert
                     RefreshListView();
                     await conversion.Start();
 
                     // Change file state on completion
-                    file.FileStatus = FileStatus.Completed;
-                    file.Progress = 100;
+                    mediaFile.FileStatus = FileStatus.Completed;
+                    mediaFile.Progress = 100;
                 }
                 catch (Exception)
                 {
-                    file.FileStatus = FileStatus.Failed;
-                    file.Progress = 0;
+                    mediaFile.FileStatus = FileStatus.Failed;
+                    mediaFile.Progress = 0;
 
                     totalFailed++;
                 }
@@ -191,7 +216,8 @@
             if (totalFailed > 0) alertMessage = $"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to convert, it is possible that the file is either corrupt or too large. You can either skip or try convert them again.";
             MessageBox.Show(string.Concat("Converting completed.", alertMessage), "DONE!", MessageBoxButtons.OK);
 
-            clearConverterButton.Enable();
+            clearCompletedButton.IsEnabled = mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileStatus.Equals(FileStatus.Completed));
+            clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
             startConvertingButton.Enable();
             addMediaFilesButton.Enable();
         }

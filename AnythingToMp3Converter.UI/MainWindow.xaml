@@ -39,8 +39,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
-                    <Button Name="deleteMediaFileButton" Content="DEL" IsEnabled="False" Width="34" Height="24" Margin="0 0 1 0" HorizontalAlignment="Left" Click="OnRemoveMediaFileButtonClick" />
-                    <Button Name="clearConverterButton" Content="CLR" IsEnabled="False" Width="34" Height="24" Margin="1 0 0 0" HorizontalAlignment="Left" Click="OnClearConverterButtonClick" />
+                    <Button Name="deleteMediaFileButton" Content="DEL" ToolTip="Delete current selected media file" IsEnabled="False" Width="34" Height="24" HorizontalAlignment="Left" Click="OnRemoveMediaFileButtonClick" />
+                    <Button Name="clearConverterButton" Content="CLR" ToolTip="Clear all media files from converters" IsEnabled="False" Width="34" Height="24" Margin="2 0" HorizontalAlignment="Left" Click="OnClearConverterButtonClick" />
+                    <Button Name="clearCompletedButton" Content="CC" ToolTip="Clear all converted media files" IsEnabled="False" Width="34" Height="24" HorizontalAlignment="Left" Click="OnClearCompletedButtonClick" />
                 </StackPanel>
                 <Button Name="startConvertingButton" Content="START CONVERTING" Width="140" Height="24" HorizontalAlignment="Right" Click="OnStartConvertingButtonClickAsync" Grid.Column="1" />
             </Grid>
