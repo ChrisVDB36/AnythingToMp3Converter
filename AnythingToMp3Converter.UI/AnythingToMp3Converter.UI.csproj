@@ -7,6 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <AssemblyName>AnythingToMp3Converter</AssemblyName>
+    <Product>Anything to MP3 converter</Product>
+    <Authors>Skoollz</Authors>
+    <Company>High Life Enterprise</Company>
+    <Description>Convert media files to MP3</Description>
+    <Copyright>© 2021 - Skoollz</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
