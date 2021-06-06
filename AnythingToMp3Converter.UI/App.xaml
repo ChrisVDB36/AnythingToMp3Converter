@@ -75,7 +75,7 @@
                         <Border Name="Border" SnapsToDevicePixels="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
                             <Grid Width="{TemplateBinding Width}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="500" />
+                                    <ColumnDefinition Width="501" />
                                     <ColumnDefinition Width="114" />
                                 </Grid.ColumnDefinitions>
                                 <Label Content="{Binding FilePath}" FontSize="14" Margin="2" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />

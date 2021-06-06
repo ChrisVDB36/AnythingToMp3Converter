@@ -16,25 +16,23 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="0 4" Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
-                    <Label Content="Output folder:" FontFamily="Segoe UI Semibold" />
-                    <TextBox Name="txtOutputFolderPath" IsReadOnly="True" Width="300" />
-                    <Button Content="..." Width="20" Height="24" Margin="1 0" Click="BtnSetOutputFolderPath" />
+                    <Label Content="Output folder:" Margin="4 0 1 0" VerticalAlignment="Center" />
+                    <TextBox Name="txtOutputFolderPath" Width="300" IsReadOnly="True" />
+                    <Button Content="SET" Width="34" Height="24" Margin="2 0 0 0" Click="BtnSetOutputFolderPath" />
                 </StackPanel>
                 <Button Name="btnAddFiles" Content="ADD FILES" Width="98" Height="24" HorizontalAlignment="Right" Click="BtnBrowseMediaFiles" Grid.Column="1" />
             </Grid>
-
             <ListView Name="lvMediaFiles" Height="239" BorderBrush="Black" BorderThickness="1" SelectionChanged="OnListViewSelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="File" Width="500" HeaderContainerStyle="{StaticResource GridViewColumnHeaderLeft}" />
+                        <GridViewColumn Header="File" Width="501" HeaderContainerStyle="{StaticResource GridViewColumnHeaderLeft}" />
                         <GridViewColumn Header="Progress" Width="114" HeaderContainerStyle="{StaticResource GridViewColumnHeaderCenter}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-
             <Grid Margin="0 4 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
