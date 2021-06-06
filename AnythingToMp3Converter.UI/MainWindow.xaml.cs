@@ -1,6 +1,7 @@
 ﻿namespace AnythingToMp3Converter.UI
 {
     using AnythingToMp3Converter.UI.Enums;
+    using AnythingToMp3Converter.UI.Extensions;
     using AnythingToMp3Converter.UI.Models;
     using System;
     using System.Collections.Generic;
@@ -100,8 +101,8 @@
         private void OnClearConverterButtonClick(object sender, RoutedEventArgs e)
         {
             if (mediaFilesListView.Items.Count > 0) mediaFilesListView.Items.Clear();
-            clearConverterButton.IsEnabled = false;
-            deleteMediaFileButton.IsEnabled = false;
+            clearConverterButton.Disable();
+            deleteMediaFileButton.Disable();
         }
 
         // Button event handler: convert files
@@ -124,10 +125,10 @@
                 return;
             }
 
-            clearConverterButton.IsEnabled = false;
-            startConvertingButton.IsEnabled = false;
-            deleteMediaFileButton.IsEnabled = false;
-            addMediaFilesButton.IsEnabled = false;
+            clearConverterButton.Disable();
+            startConvertingButton.Disable();
+            deleteMediaFileButton.Disable();
+            addMediaFilesButton.Disable();
 
             string alertMessage = string.Empty;
             int totalFailed = 0;
@@ -184,9 +185,9 @@
             if (totalFailed > 0) alertMessage = $"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to convert, it is possible that the file is either corrupt or too large.";
             MessageBox.Show(string.Concat("Converting completed.", alertMessage), "DONE!", MessageBoxButtons.OK);
 
-            clearConverterButton.IsEnabled = true;
-            startConvertingButton.IsEnabled = true;
-            addMediaFilesButton.IsEnabled = true;
+            clearConverterButton.Enable();
+            startConvertingButton.Enable();
+            addMediaFilesButton.Enable();
         }
 
         // Refresh listview when items are been updated
@@ -204,7 +205,7 @@
                 string path = AppDomain.CurrentDomain.BaseDirectory;
                 if (!Directory.EnumerateFiles(path).Count(f => f.Contains(_ffmpegFileName) || f.Contains(_ffprobeFileName)).Equals(2))
                 {
-                    ffmpegVerificationStackPanel.Visibility = Visibility.Visible;
+                    ffmpegVerificationStackPanel.Show();
                     await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Official, path);
 
                     // Remove unused folder (macOS files)
@@ -217,7 +218,7 @@
 
                     // Delay before hiding panel
                     await Task.Delay(2000);
-                    ffmpegVerificationStackPanel.Visibility = Visibility.Collapsed;
+                    ffmpegVerificationStackPanel.Collapse();
                 }
 
             }
