@@ -212,7 +212,7 @@
                     if (Directory.Exists(macOsFilesFolder)) Directory.Delete(macOsFilesFolder, true);
 
                     // Fade out effect after install completion
-                    ffmpegVerificationStackPanel.ContentTemplate = TryFindResource("FFmpegUpdaterCompleted") as DataTemplate;
+                    ffmpegVerificationStackPanel.ContentTemplate = TryFindResource("VerifiedFfmpegDataTemplate") as DataTemplate;
                     ffmpegVerificationStackPanel.BeginAnimation(OpacityProperty, new DoubleAnimation(0, TimeSpan.FromSeconds(2)));
 
                     // Delay before hiding panel

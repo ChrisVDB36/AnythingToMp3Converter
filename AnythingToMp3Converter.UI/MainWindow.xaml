@@ -28,8 +28,8 @@
             <ListView Name="mediaFilesListView" Height="239" BorderBrush="Black" BorderThickness="1" SelectionChanged="OnListViewSelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="File" Width="501" HeaderContainerStyle="{StaticResource GridViewColumnHeaderLeft}" />
-                        <GridViewColumn Header="Progress" Width="114" HeaderContainerStyle="{StaticResource GridViewColumnHeaderCenter}" />
+                        <GridViewColumn Header="File" Width="501" HeaderContainerStyle="{StaticResource LeftGridViewColumnHeaderStyle}" />
+                        <GridViewColumn Header="Progress" Width="114" HeaderContainerStyle="{StaticResource CenterGridViewColumnHeaderStyle}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -47,6 +47,6 @@
         </StackPanel>
 
         <!-- FFMPEG UPDATER -->
-        <ContentPresenter Name="ffmpegVerificationStackPanel" Visibility="Collapsed" ContentTemplate="{StaticResource FFmpegUpdaterCheck}" />
+        <ContentPresenter Name="ffmpegVerificationStackPanel" Visibility="Collapsed" ContentTemplate="{StaticResource VerifyFfmpegDataTemplate}" />
     </Grid>
 </Window>

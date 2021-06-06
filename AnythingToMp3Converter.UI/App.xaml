@@ -37,6 +37,20 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="TextElement.Foreground" Value="Black" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
+
+        <Style x:Key="LeftGridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource GridViewColumnHeaderStyle}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+
+        <Style x:Key="CenterGridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource GridViewColumnHeaderStyle}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
         <Style TargetType="{x:Type ListView}">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="White" />
@@ -104,21 +118,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="TextElement.Foreground" Value="Black" />
-            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="IsEnabled" Value="False" />
-        </Style>
-
-        <Style x:Key="GridViewColumnHeaderLeft" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource GridViewColumnHeaderStyle}">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-        </Style>
-
-        <Style x:Key="GridViewColumnHeaderCenter" TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource GridViewColumnHeaderStyle}">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-        </Style>
-
-        <DataTemplate x:Key="FFmpegUpdaterCheck">
+        <DataTemplate x:Key="VerifyFfmpegDataTemplate">
             <Grid Cursor="Arrow">
                 <StackPanel Opacity="0.4" Background="Black" />
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -132,7 +132,7 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="FFmpegUpdaterCompleted">
+        <DataTemplate x:Key="VerifiedFfmpegDataTemplate">
             <Grid Cursor="Arrow">
                 <StackPanel Opacity="0.4" Background="Black" />
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
