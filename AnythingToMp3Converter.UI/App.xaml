@@ -7,6 +7,8 @@
     <Application.Resources>
         <converter:ToLowerCaseConverter x:Key="ToLowerCaseConverter" />
         <converter:FileNameLimitConverter x:Key="FileNameLimitConverter" />
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        
         <SolidColorBrush x:Key="ColorBlue" Color="#0c5f9f" />
         <SolidColorBrush x:Key="ColorBabyBlue" Color="#77a3c3" />
 
@@ -16,7 +18,7 @@
             <Setter Property="FontSize" Value="11" />
             <Setter Property="FontFamily" Value="Segoe UI Semibold" />
         </Style>
-        
+
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="Foreground" Value="Black" />
@@ -46,6 +48,7 @@
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="AllowDrop" Value="False" />
             <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
             <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Pixel" />
             <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
@@ -56,7 +59,10 @@
                     <ControlTemplate TargetType="{x:Type ListView}">
                         <Border Name="ListViewBorder" SnapsToDevicePixels="True" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
                             <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}" Padding="{TemplateBinding Padding}">
-                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <Grid>
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    <TextBlock Visibility="{TemplateBinding Tag, Converter={StaticResource BoolToVisibilityConverter}}" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                </Grid>
                             </ScrollViewer>
                         </Border>
                         <ControlTemplate.Triggers>

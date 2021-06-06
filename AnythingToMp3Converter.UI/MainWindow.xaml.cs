@@ -155,13 +155,13 @@
                 return;
             }
 
-            listViewBlockerTextBlock.Show();
+            mediaFilesListView.Tag = "true"; // Click disable 'trick'
+            mediaFilesListView.SelectedItem = null;
             clearCompletedButton.Disable();
             clearConverterButton.Disable();
             startConvertingButton.Disable();
             deleteMediaFileButton.Disable();
             addMediaFilesButton.Disable();
-            mediaFilesListView.SelectedItem = null;
 
             string alertMessage = string.Empty;
             int totalFailed = 0;
@@ -223,6 +223,7 @@
             startConvertingButton.Enable();
             addMediaFilesButton.Enable();
             listViewBlockerTextBlock.Hide();
+            mediaFilesListView.Tag = "false";
         }
 
         // Refresh listview when items are been updated
