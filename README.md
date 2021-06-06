@@ -7,8 +7,7 @@ If these files are not found, they will be downloaded and installed in the same 
 <br />
 <br />
 Copy pasted my code to a github repo for anyone who likes to use/modify this<br />
-The convertor works for almost any media file but if you think anything can be done better feel free to edit to your own favor<br />
-You are always free to note me about any chances you applied yourself!
+The convertor works for almost any media file but if you think anything can be done better feel free to edit to your own favor. You are always free to note me about any chances you applied yourself!
 <br />
 <br />
 Packages used:
