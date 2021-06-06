@@ -6,6 +6,7 @@
 
     <Application.Resources>
         <converter:ToLowerCaseConverter x:Key="ToLowerCaseConverter" />
+        <converter:FileNameLimitConverter x:Key="FileNameLimitConverter" />
         <SolidColorBrush x:Key="ColorBlue" Color="#0c5f9f" />
         <SolidColorBrush x:Key="ColorBabyBlue" Color="#77a3c3" />
 
