@@ -74,6 +74,7 @@
                     {
                         FilePath = fileInfo.FullName,
                         FileName = fileInfo.Name.RemoveValue(fileInfo.Extension),
+                        FileFullName = fileInfo.Name,
                         FileStatus = FileStatus.Waiting,
                         Progress = 0
                     });
