@@ -49,6 +49,6 @@
         </StackPanel>
 
         <!-- FFMPEG UPDATER -->
-        <ContentPresenter Name="cpUpdater" ContentTemplate="{StaticResource FFmpegUpdaterCheck}" Visibility="Collapsed" />
+        <ContentPresenter Name="cpUpdater" Visibility="Collapsed" ContentTemplate="{StaticResource FFmpegUpdaterCheck}" />
     </Grid>
 </Window>
