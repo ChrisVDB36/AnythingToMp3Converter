@@ -63,24 +63,33 @@
             // Get files
             if ((bool)openFileDialog.ShowDialog())
             {
+                int totalFailed = 0;
                 List<FileInfo> newFiles = openFileDialog.FileNames.SelectAs(f => new FileInfo(f)).ToList();
                 if (newFiles.Count <= 0) return;
 
                 // Go tru all selected files
                 foreach (FileInfo fileInfo in newFiles)
                 {
-                    if (mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileName.Equals(fileInfo.Name.RemoveValue(fileInfo.Extension)))) continue;
-                    mediaFilesListView.Items.Add(new MediaFile
+                    try
                     {
-                        FilePath = fileInfo.FullName,
-                        FileName = fileInfo.Name.RemoveValue(fileInfo.Extension),
-                        FileFullName = fileInfo.Name,
-                        FileStatus = FileStatus.Waiting,
-                        Progress = 0
-                    });
+                        if (mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileName.Equals(fileInfo.Name.RemoveValue(fileInfo.Extension)))) continue;
+                        mediaFilesListView.Items.Add(new MediaFile
+                        {
+                            FilePath = fileInfo.FullName,
+                            FileName = fileInfo.Name.RemoveValue(fileInfo.Extension),
+                            FileFullName = fileInfo.Name,
+                            FileStatus = FileStatus.Waiting,
+                            Progress = 0
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        totalFailed++;
+                    }
                 }
 
                 clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
+                if (totalFailed > 0) MessageBox.Show($"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to add, it is possible that the file is either corrupt or too large. Please try again...", "Something went wrong!");
             }
         }
 
@@ -179,7 +188,7 @@
             }
 
             // Report messages
-            if (totalFailed > 0) alertMessage = $"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to convert, it is possible that the file is either corrupt or too large.";
+            if (totalFailed > 0) alertMessage = $"\n{totalFailed} {(totalFailed == 1 ? "file" : "files")} failed to convert, it is possible that the file is either corrupt or too large. You can either skip or try convert them again.";
             MessageBox.Show(string.Concat("Converting completed.", alertMessage), "DONE!", MessageBoxButtons.OK);
 
             clearConverterButton.Enable();
