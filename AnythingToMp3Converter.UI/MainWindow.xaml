@@ -21,7 +21,7 @@
                 <StackPanel Margin="0 4" Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
                     <Label Content="Output folder:" Margin="4 0 1 0" VerticalAlignment="Center" />
                     <TextBox Name="outputFolderPathTextBox" Width="300" IsReadOnly="True" />
-                    <Button Content="SET" Width="34" Height="24" Margin="2 0 0 0" Click="OnSetOutputFolderPathButtonClick" />
+                    <Button Content="SET" Width="34" Height="24" Margin="1 0 0 0" Click="OnSetOutputFolderPathButtonClick" />
                 </StackPanel>
                 <Button Name="addMediaFilesButton" Content="ADD FILES" Width="98" Height="24" HorizontalAlignment="Right" Click="OnAddFilesButtonClick" Grid.Column="1" />
             </Grid>
