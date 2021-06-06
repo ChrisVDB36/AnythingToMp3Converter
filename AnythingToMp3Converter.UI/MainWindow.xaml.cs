@@ -55,7 +55,7 @@
         {
             var openFileDialog = new OpenFileDialog
             {
-                Title = "Select any non MP3 files",
+                Title = "Select any non MP3 file(s)",
                 Filter = "All Media Files|*.wav;*.aac;*.wma;*.wmv;*.avi;*.mpg;*.mpeg;*.m1v;*.mp2;*.mpa;*.mpe;*.m3u;*.mp4;*.mov;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.cda;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi;*.mkv;*.WAV;*.AAC;*.WMA;*.WMV;*.AVI;*.MPG;*.MPEG;*.M1V;*.MP2;*.MPA;*.MPE;*.M3U;*.MP4;*.MOV;*.3G2;*.3GP2;*.3GP;*.3GPP;*.M4A;*.CDA;*.AIF;*.AIFC;*.AIFF;*.MID;*.MIDI;*.RMI;*.MKV",
                 Multiselect = true
             };
@@ -63,24 +63,20 @@
             // Get files
             if ((bool)openFileDialog.ShowDialog())
             {
-                List<string> files = openFileDialog.FileNames.ToList();
-                if (files.Count <= 0) return;
+                List<FileInfo> newFiles = openFileDialog.FileNames.SelectAs(f => new FileInfo(f)).ToList();
+                if (newFiles.Count <= 0) return;
 
                 // Go tru all selected files
-                foreach (var file in files)
+                foreach (FileInfo fileInfo in newFiles)
                 {
-                    var mediaFile = new MediaFile
+                    if (mediaFilesListView.Items.OfType<MediaFile>().GotAny(mf => mf.FileName.Equals(fileInfo.Name.RemoveValue(fileInfo.Extension)))) continue;
+                    mediaFilesListView.Items.Add(new MediaFile
                     {
-                        FilePath = file,
-                        FileName = file.Split('\\').Last().Replace(".mp4", string.Empty),
+                        FilePath = fileInfo.FullName,
+                        FileName = fileInfo.Name.RemoveValue(fileInfo.Extension),
                         FileStatus = FileStatus.Waiting,
                         Progress = 0
-                    };
-
-                    if (!mediaFilesListView.Items.Contains(mediaFile))
-                    {
-                        mediaFilesListView.Items.Add(mediaFile);
-                    }
+                    });
                 }
 
                 clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
