@@ -155,6 +155,7 @@
                 return;
             }
 
+            listViewBlockerTextBlock.Show();
             clearCompletedButton.Disable();
             clearConverterButton.Disable();
             startConvertingButton.Disable();
@@ -220,6 +221,7 @@
             clearConverterButton.IsEnabled = mediaFilesListView.Items.Count > 0;
             startConvertingButton.Enable();
             addMediaFilesButton.Enable();
+            listViewBlockerTextBlock.Hide();
         }
 
         // Refresh listview when items are been updated
