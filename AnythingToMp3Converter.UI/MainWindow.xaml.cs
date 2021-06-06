@@ -1,5 +1,6 @@
 ﻿namespace AnythingToMp3Converter.UI
 {
+    using AnythingToMp3Converter.UI.Enums;
     using AnythingToMp3Converter.UI.Models;
     using System;
     using System.Collections.Generic;
@@ -71,7 +72,7 @@
                     {
                         FilePath = file,
                         FileName = file.Split('\\').Last().Replace(".mp4", string.Empty),
-                        Action = "waiting",
+                        FileStatus = FileStatus.Waiting,
                         Progress = 0
                     };
 
@@ -157,7 +158,7 @@
                     };
 
                     // Change file state
-                    file.Action = "Converting...";
+                    file.FileStatus = FileStatus.Converting;
                     file.Progress = 0;
 
                     // Convert
@@ -165,13 +166,13 @@
                     await conversion.Start();
 
                     // Change file state on completion
-                    file.Action = "Completed";
+                    file.FileStatus = FileStatus.Completed;
                     file.Progress = 100;
                 }
                 catch (Exception)
                 {
+                    file.FileStatus = FileStatus.Failed;
                     file.Progress = 0;
-                    file.Action = "failed";
 
                     totalFailed++;
                 }
