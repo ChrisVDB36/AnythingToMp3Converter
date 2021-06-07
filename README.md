@@ -14,5 +14,9 @@ Packages used:
  - **<a href=https://github.com/JamesNK/Newtonsoft.Json>Newtonsoft.Json</a>**
  - **<a href=https://github.com/XamlAnimatedGif/WpfAnimatedGif>WpfAnimatedGif</a>**
  - **<a href=https://github.com/tomaszzmuda/Xabe.FFmpeg>Xabe.FFmpeg</a>**
+<br/>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/10036204/120969667-b9a52200-c76a-11eb-9209-65a8cbbcb8c1.png" alt="Converter example image"/>
+</p>
 
 *Enjoy :-)*
