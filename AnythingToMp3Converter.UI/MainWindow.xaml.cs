@@ -167,11 +167,11 @@
             int totalFailed = 0;
 
             // Convert each file from listview
+            FFmpeg.SetExecutablesPath(AppDomain.CurrentDomain.BaseDirectory, _ffmpegFileName, _ffprobeFileName);
             foreach (var mediaFile in mediaFiles)
             {
                 try
                 {
-                    FFmpeg.SetExecutablesPath(AppDomain.CurrentDomain.BaseDirectory, _ffmpegFileName, _ffprobeFileName);
                     string outputFileName = string.Concat(Path.Combine(outputFolderPath, mediaFile.FileName), ".mp3");
                     IMediaInfo mediaInfo = await FFmpeg.GetMediaInfo(mediaFile.FilePath);
                     IStream audioStream = mediaInfo.AudioStreams.FirstOrDefault()?.SetCodec(AudioCodec.mp3);
