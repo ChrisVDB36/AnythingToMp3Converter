@@ -1,4 +1,4 @@
-# AnythingToMp3Convertor
+# AnythingToMp3Converter
 *==> Reworked from my other converter: **<a href=https://github.com/ChrisVDB36/Mp4ToMp3Convertor>Mp4ToMp3Convertor</a>***
 
 Convert **any media file *(non mp3)*** to **MP3** using a simple convertor made in ***WPF C# .NET Core 3.1+***<br />
