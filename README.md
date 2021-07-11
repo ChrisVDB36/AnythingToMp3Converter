@@ -1,5 +1,4 @@
 # AnythingToMp3Converter
-*==> Reworked from my other converter: **<a href=https://github.com/ChrisVDB36/Mp4ToMp3Convertor>Mp4ToMp3Convertor</a>***
 
 Convert **any media file *(non mp3)*** to **MP3** using a simple converter made in ***WPF C# .NET Core 3.1+***<br />
 On launch the converter checks if the required components are installed, these are **FFmpeg.exe** and **FFprobe.exe**<br />
